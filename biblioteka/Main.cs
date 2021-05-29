@@ -68,7 +68,6 @@ namespace biblioteka
         {
             string borrow_item = borrow_item_tb.Text;
             DateTime return_date = today_date.AddDays(30);
-
             
             string sql = "insert into borrows(borrower_id,item_id,return_date)" +
                   "values('" + user.cardnum + "','" + borrow_item +  "','" + return_date.ToString("yyyy-MM-dd") + "')";

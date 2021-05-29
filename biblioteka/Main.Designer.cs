@@ -513,8 +513,8 @@ namespace biblioteka
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1029, 650);
-            this.Controls.Add(this.balance_panel);
             this.Controls.Add(this.return_panel);
+            this.Controls.Add(this.balance_panel);
             this.Controls.Add(this.borrow_panel);
             this.Controls.Add(this.main_panel);
             this.Controls.Add(this.left_menu);
