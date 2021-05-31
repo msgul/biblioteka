@@ -686,9 +686,9 @@ namespace biblioteka
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1029, 650);
+            this.Controls.Add(this.inventory_panel);
             this.Controls.Add(this.group_panel);
             this.Controls.Add(this.users_panel);
-            this.Controls.Add(this.inventory_panel);
             this.Controls.Add(this.left_menu);
             this.Name = "Main_admin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

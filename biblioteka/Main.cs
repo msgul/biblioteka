@@ -12,7 +12,6 @@ namespace biblioteka
     public partial class main : Form
     {
         User user;
-        UnitTest ut = new UnitTest();
         DateTime today_date = DateTime.Today;
 
         public main(User user_)
@@ -34,7 +33,7 @@ namespace biblioteka
 
         private void load_main()
         {
-            string sql = "select name, item_id, return_date, reserved from borrows b,items i where borrower_id = '" 
+            string sql = "select name as parça_adı, item_id as parça_barkodu, return_date as son_iade_tarihi, reserved as rezerve from borrows b,items i where borrower_id = '" 
                 + user.cardnum + "' and item_id = i.id";
 
             dataSet = pg.Query(sql);
@@ -119,13 +118,13 @@ namespace biblioteka
 
         private void borrow_item_but_Click(object sender, EventArgs e)
         {
-            /*
-            if(ut.check_negative_balance())
+            
+            if(check_negative_balance(user))
             {
                 MessageBox.Show("Daha fazla parça ödünç almak için lütfen bakiye yüklemesi yapınız.");
                 return;
             }
-            */
+            
 
             string borrow_item = borrow_item_tb.Text;
             DateTime return_date = today_date.AddDays(30);
@@ -153,6 +152,14 @@ namespace biblioteka
             user.balance += deposit_balance;
         }
 
-       
+        public bool check_negative_balance(User us)
+        {
+            if (us.balance < 0)
+                return true;
+            else
+                return false;
+        }
+
+
     }
 }

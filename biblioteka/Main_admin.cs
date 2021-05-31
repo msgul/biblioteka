@@ -31,10 +31,11 @@ namespace biblioteka
         private void load_DGV1()
         {
             PgsqlConnect pg = new PgsqlConnect();
-            DataSet ds = pg.Query("select id,name,item_type,year from items");
+            DataSet ds = pg.Query("select id as barkod_numarası,name as adı,item_type as tür,year as yıl from items");
 
             dataGridView1.DataSource = ds.Tables[0];
         }
+
         private void load_DGV2()
         {
             PgsqlConnect pg = new PgsqlConnect();
@@ -51,7 +52,6 @@ namespace biblioteka
             string item_type = item_type_cb.Text;
 
             string sql = "insert into items values('" + item_id + "','" + item_type + "','" + item_year + "','" + item_name + "')";
-
 
             PgsqlConnect pg = new PgsqlConnect();
             DataSet ds = pg.Query(sql);
@@ -83,8 +83,6 @@ namespace biblioteka
                 "item_type = '" + item_type + "', name = '"+ item_name + 
                 "', year = '" + item_year + "'  where id = '" + item_id +"'";
 
-            MessageBox.Show(sql);
-
             PgsqlConnect pg = new PgsqlConnect();
             DataSet ds = pg.Query(sql);
 
@@ -101,8 +99,6 @@ namespace biblioteka
             item_name_tb.Text = "";
             item_year_tb.Text = "";
             item_type_cb.Text = "";
-
-            MessageBox.Show(sql);
 
             PgsqlConnect pg = new PgsqlConnect();
             DataSet ds = pg.Query(sql);
@@ -156,7 +152,6 @@ namespace biblioteka
         private void user_delete_but_Click(object sender, EventArgs e)
         {
             string user_id = user_id_tb.Text;
-
             string sql = "delete from users where cardnum = '" + user_id + "'";
 
             PgsqlConnect pg = new PgsqlConnect();
@@ -177,7 +172,6 @@ namespace biblioteka
                 user_lname_tb.Text = clicked_row.Cells["lname"].Value.ToString();
                 user_email_tb.Text = clicked_row.Cells["email"].Value.ToString();
                 user_balance_tb.Text = clicked_row.Cells["balance"].Value.ToString();
-
             }
         }
 
@@ -215,7 +209,6 @@ namespace biblioteka
             student_days_tb.Text = ds.Tables[0].Rows[1]["borrow_time"].ToString();
             lecturer_days_tb.Text = ds.Tables[0].Rows[2]["borrow_time"].ToString();
             officer_days_tb.Text = ds.Tables[0].Rows[3]["borrow_time"].ToString();
-
         }
 
         private void exit_but_Click(object sender, EventArgs e)
