@@ -76,7 +76,13 @@ namespace biblioteka
 
         private void login_Load(object sender, EventArgs e)
         {
+            UnitTest ut = new UnitTest();
 
+            if (!ut.check_biblioDB_conection())
+            {
+                MessageBox.Show("Veritabanı bağlantısı gerçekleştirilemedi.");
+                return;
+            }
         }
     }
 }

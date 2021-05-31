@@ -111,6 +111,7 @@ namespace biblioteka
             this.exit_but.TabIndex = 5;
             this.exit_but.Text = "Çıkış";
             this.exit_but.UseVisualStyleBackColor = true;
+            this.exit_but.Click += new System.EventHandler(this.exit_but_Click);
             // 
             // users_but
             // 
@@ -690,6 +691,7 @@ namespace biblioteka
             this.Controls.Add(this.inventory_panel);
             this.Controls.Add(this.left_menu);
             this.Name = "Main_admin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main_admin";
             this.left_menu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

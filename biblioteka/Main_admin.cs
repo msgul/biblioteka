@@ -217,5 +217,10 @@ namespace biblioteka
             officer_days_tb.Text = ds.Tables[0].Rows[3]["borrow_time"].ToString();
 
         }
+
+        private void exit_but_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
