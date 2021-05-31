@@ -29,7 +29,7 @@ namespace biblioteka
 
         private void login_but_Click(object sender, EventArgs e)
         {
-            /*
+            
             string card_num = login_textbox.Text;
             PgsqlConnect pg = new PgsqlConnect();
             DataSet dataSet =  pg.Query("select * from users where cardnum = '" + card_num + "'");
@@ -39,12 +39,10 @@ namespace biblioteka
                 MessageBox.Show("Veritabanı Bağlantı Hatası");
                 return; 
             }
-            */
+            
 
             try
             {
-                /*
-                
                 string fname = Convert.ToString(dataSet.Tables[0].Rows[0]["fname"]);
                 string lname = Convert.ToString(dataSet.Tables[0].Rows[0]["fname"]);
                 string email = Convert.ToString(dataSet.Tables[0].Rows[0]["email"]);
@@ -53,16 +51,18 @@ namespace biblioteka
                 int group_id = Convert.ToInt32(dataSet.Tables[0].Rows[0]["group_id"]);
 
                 User user = new User(card_num, fname, lname, email, balance, group_id);
-
-                */
-
-                /*
-                var main_page = new main(user);
-                this.Hide();
-                main_page.Show();*/
-
-                var main_page_admin = new Main_admin();
-                main_page_admin.Show();
+                
+                if(group_id == 0)
+                {
+                    var main_page_admin = new Main_admin();
+                    main_page_admin.Show();
+                }
+                else
+                {
+                    var main_page = new main(user);
+                    this.Hide();
+                    main_page.Show();
+                }
                 
             }
             catch(Exception Ex)

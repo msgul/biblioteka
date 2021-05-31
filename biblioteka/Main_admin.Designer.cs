@@ -51,12 +51,26 @@ namespace biblioteka
             this.label13 = new System.Windows.Forms.Label();
             this.item_name_tb = new System.Windows.Forms.TextBox();
             this.group_panel = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lecturer_days_tb = new System.Windows.Forms.TextBox();
+            this.officer_days_tb = new System.Windows.Forms.TextBox();
+            this.student_days_tb = new System.Windows.Forms.TextBox();
+            this.group_update_but = new System.Windows.Forms.Button();
+            this.lecturer_limit_tb = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.officer_limit_tb = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.student_limit_tb = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.users_panel = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.user_id_tb = new System.Windows.Forms.TextBox();
             this.user_balance_tb = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
-            this.user_id_tb = new System.Windows.Forms.TextBox();
+            this.user_email_tb = new System.Windows.Forms.TextBox();
             this.user_add_but = new System.Windows.Forms.Button();
             this.user_update_but = new System.Windows.Forms.Button();
             this.user_group_cb = new System.Windows.Forms.ComboBox();
@@ -70,6 +84,7 @@ namespace biblioteka
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.inventory_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.group_panel.SuspendLayout();
             this.users_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -117,6 +132,7 @@ namespace biblioteka
             this.group_but.TabIndex = 3;
             this.group_but.Text = "Grup Ayarları";
             this.group_but.UseVisualStyleBackColor = true;
+            this.group_but.Click += new System.EventHandler(this.group_but_Click);
             // 
             // inventory_but
             // 
@@ -125,7 +141,7 @@ namespace biblioteka
             this.inventory_but.Name = "inventory_but";
             this.inventory_but.Size = new System.Drawing.Size(160, 78);
             this.inventory_but.TabIndex = 2;
-            this.inventory_but.Text = "Envanter İşlemleri";
+            this.inventory_but.Text = "Parça  İşlemleri";
             this.inventory_but.UseVisualStyleBackColor = true;
             this.inventory_but.Click += new System.EventHandler(this.inventory_but_Click);
             // 
@@ -146,7 +162,7 @@ namespace biblioteka
             this.homepage_but.Name = "homepage_but";
             this.homepage_but.Size = new System.Drawing.Size(160, 78);
             this.homepage_but.TabIndex = 1;
-            this.homepage_but.Text = "Ana Sayfa";
+            this.homepage_but.Text = "Envanter İşlemleri";
             this.homepage_but.UseVisualStyleBackColor = true;
             // 
             // inventory_panel
@@ -312,18 +328,159 @@ namespace biblioteka
             // 
             // group_panel
             // 
+            this.group_panel.Controls.Add(this.label15);
+            this.group_panel.Controls.Add(this.label14);
+            this.group_panel.Controls.Add(this.lecturer_days_tb);
+            this.group_panel.Controls.Add(this.officer_days_tb);
+            this.group_panel.Controls.Add(this.student_days_tb);
+            this.group_panel.Controls.Add(this.group_update_but);
+            this.group_panel.Controls.Add(this.lecturer_limit_tb);
+            this.group_panel.Controls.Add(this.label10);
+            this.group_panel.Controls.Add(this.officer_limit_tb);
+            this.group_panel.Controls.Add(this.label9);
+            this.group_panel.Controls.Add(this.student_limit_tb);
+            this.group_panel.Controls.Add(this.label8);
             this.group_panel.Location = new System.Drawing.Point(208, 12);
             this.group_panel.Name = "group_panel";
             this.group_panel.Size = new System.Drawing.Size(809, 626);
             this.group_panel.TabIndex = 15;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label15.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.label15.Location = new System.Drawing.Point(463, 153);
+            this.label15.Name = "label15";
+            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label15.Size = new System.Drawing.Size(159, 54);
+            this.label15.TabIndex = 25;
+            this.label15.Text = "Ödünç Süresi\r\n(Gün)";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label14.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.label14.Location = new System.Drawing.Point(297, 153);
+            this.label14.Name = "label14";
+            this.label14.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label14.Size = new System.Drawing.Size(158, 54);
+            this.label14.TabIndex = 24;
+            this.label14.Text = "Ödünç Alma\r\n(Adet)\r\n";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lecturer_days_tb
+            // 
+            this.lecturer_days_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lecturer_days_tb.Location = new System.Drawing.Point(472, 272);
+            this.lecturer_days_tb.Name = "lecturer_days_tb";
+            this.lecturer_days_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lecturer_days_tb.Size = new System.Drawing.Size(141, 36);
+            this.lecturer_days_tb.TabIndex = 23;
+            // 
+            // officer_days_tb
+            // 
+            this.officer_days_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.officer_days_tb.Location = new System.Drawing.Point(472, 331);
+            this.officer_days_tb.Name = "officer_days_tb";
+            this.officer_days_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.officer_days_tb.Size = new System.Drawing.Size(141, 36);
+            this.officer_days_tb.TabIndex = 22;
+            // 
+            // student_days_tb
+            // 
+            this.student_days_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.student_days_tb.Location = new System.Drawing.Point(472, 210);
+            this.student_days_tb.Name = "student_days_tb";
+            this.student_days_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.student_days_tb.Size = new System.Drawing.Size(141, 36);
+            this.student_days_tb.TabIndex = 21;
+            // 
+            // group_update_but
+            // 
+            this.group_update_but.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.group_update_but.Location = new System.Drawing.Point(266, 391);
+            this.group_update_but.Name = "group_update_but";
+            this.group_update_but.Size = new System.Drawing.Size(245, 50);
+            this.group_update_but.TabIndex = 6;
+            this.group_update_but.Text = "Değiştir";
+            this.group_update_but.UseVisualStyleBackColor = true;
+            this.group_update_but.Click += new System.EventHandler(this.group_update_but_Click);
+            // 
+            // lecturer_limit_tb
+            // 
+            this.lecturer_limit_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lecturer_limit_tb.Location = new System.Drawing.Point(297, 272);
+            this.lecturer_limit_tb.Name = "lecturer_limit_tb";
+            this.lecturer_limit_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lecturer_limit_tb.Size = new System.Drawing.Size(141, 36);
+            this.lecturer_limit_tb.TabIndex = 19;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.label10.Location = new System.Drawing.Point(98, 270);
+            this.label10.Name = "label10";
+            this.label10.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label10.Size = new System.Drawing.Size(193, 34);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Ö. Görevlisi : ";
+            // 
+            // officer_limit_tb
+            // 
+            this.officer_limit_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.officer_limit_tb.Location = new System.Drawing.Point(297, 331);
+            this.officer_limit_tb.Name = "officer_limit_tb";
+            this.officer_limit_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.officer_limit_tb.Size = new System.Drawing.Size(141, 36);
+            this.officer_limit_tb.TabIndex = 17;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label9.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.label9.Location = new System.Drawing.Point(156, 333);
+            this.label9.Name = "label9";
+            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label9.Size = new System.Drawing.Size(132, 34);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Memur : ";
+            // 
+            // student_limit_tb
+            // 
+            this.student_limit_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.student_limit_tb.Location = new System.Drawing.Point(297, 210);
+            this.student_limit_tb.Name = "student_limit_tb";
+            this.student_limit_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.student_limit_tb.Size = new System.Drawing.Size(141, 36);
+            this.student_limit_tb.TabIndex = 15;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.label8.Location = new System.Drawing.Point(142, 212);
+            this.label8.Name = "label8";
+            this.label8.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label8.Size = new System.Drawing.Size(149, 34);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Öğrenci : ";
+            // 
             // users_panel
             // 
+            this.users_panel.Controls.Add(this.label7);
+            this.users_panel.Controls.Add(this.user_id_tb);
             this.users_panel.Controls.Add(this.user_balance_tb);
             this.users_panel.Controls.Add(this.label6);
             this.users_panel.Controls.Add(this.dataGridView2);
             this.users_panel.Controls.Add(this.label2);
-            this.users_panel.Controls.Add(this.user_id_tb);
+            this.users_panel.Controls.Add(this.user_email_tb);
             this.users_panel.Controls.Add(this.user_add_but);
             this.users_panel.Controls.Add(this.user_update_but);
             this.users_panel.Controls.Add(this.user_group_cb);
@@ -339,10 +496,31 @@ namespace biblioteka
             this.users_panel.Size = new System.Drawing.Size(809, 626);
             this.users_panel.TabIndex = 16;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.label7.Location = new System.Drawing.Point(96, 391);
+            this.label7.Name = "label7";
+            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label7.Size = new System.Drawing.Size(201, 34);
+            this.label7.TabIndex = 60;
+            this.label7.Text = "Email adresi : ";
+            // 
+            // user_id_tb
+            // 
+            this.user_id_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.user_id_tb.Location = new System.Drawing.Point(303, 347);
+            this.user_id_tb.Name = "user_id_tb";
+            this.user_id_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.user_id_tb.Size = new System.Drawing.Size(459, 36);
+            this.user_id_tb.TabIndex = 59;
+            // 
             // user_balance_tb
             // 
             this.user_balance_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.user_balance_tb.Location = new System.Drawing.Point(616, 487);
+            this.user_balance_tb.Location = new System.Drawing.Point(616, 479);
             this.user_balance_tb.Name = "user_balance_tb";
             this.user_balance_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.user_balance_tb.Size = new System.Drawing.Size(146, 36);
@@ -353,7 +531,7 @@ namespace biblioteka
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label6.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.label6.Location = new System.Drawing.Point(494, 489);
+            this.label6.Location = new System.Drawing.Point(494, 481);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label6.Size = new System.Drawing.Size(127, 34);
@@ -375,29 +553,30 @@ namespace biblioteka
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 29;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(773, 356);
+            this.dataGridView2.Size = new System.Drawing.Size(773, 313);
             this.dataGridView2.TabIndex = 56;
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.label2.Location = new System.Drawing.Point(70, 399);
+            this.label2.Location = new System.Drawing.Point(70, 345);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label2.Size = new System.Drawing.Size(227, 34);
             this.label2.TabIndex = 55;
             this.label2.Text = "Kart Numarası : ";
             // 
-            // user_id_tb
+            // user_email_tb
             // 
-            this.user_id_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.user_id_tb.Location = new System.Drawing.Point(303, 397);
-            this.user_id_tb.Name = "user_id_tb";
-            this.user_id_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.user_id_tb.Size = new System.Drawing.Size(459, 36);
-            this.user_id_tb.TabIndex = 54;
+            this.user_email_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.user_email_tb.Location = new System.Drawing.Point(303, 391);
+            this.user_email_tb.Name = "user_email_tb";
+            this.user_email_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.user_email_tb.Size = new System.Drawing.Size(459, 36);
+            this.user_email_tb.TabIndex = 54;
             // 
             // user_add_but
             // 
@@ -419,6 +598,7 @@ namespace biblioteka
             this.user_update_but.TabIndex = 52;
             this.user_update_but.Text = "Değiştir";
             this.user_update_but.UseVisualStyleBackColor = true;
+            this.user_update_but.Click += new System.EventHandler(this.user_update_but_Click);
             // 
             // user_group_cb
             // 
@@ -426,11 +606,10 @@ namespace biblioteka
             this.user_group_cb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.user_group_cb.FormattingEnabled = true;
             this.user_group_cb.Items.AddRange(new object[] {
-            "book",
-            "textbook",
-            "journal",
-            "dvd"});
-            this.user_group_cb.Location = new System.Drawing.Point(303, 488);
+            "1",
+            "2",
+            "3"});
+            this.user_group_cb.Location = new System.Drawing.Point(303, 480);
             this.user_group_cb.Name = "user_group_cb";
             this.user_group_cb.Size = new System.Drawing.Size(185, 35);
             this.user_group_cb.TabIndex = 51;
@@ -444,11 +623,12 @@ namespace biblioteka
             this.user_delete_but.TabIndex = 45;
             this.user_delete_but.Text = "Sil";
             this.user_delete_but.UseVisualStyleBackColor = true;
+            this.user_delete_but.Click += new System.EventHandler(this.user_delete_but_Click);
             // 
             // user_lname_tb
             // 
             this.user_lname_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.user_lname_tb.Location = new System.Drawing.Point(616, 443);
+            this.user_lname_tb.Location = new System.Drawing.Point(616, 435);
             this.user_lname_tb.Name = "user_lname_tb";
             this.user_lname_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.user_lname_tb.Size = new System.Drawing.Size(146, 36);
@@ -471,7 +651,7 @@ namespace biblioteka
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.label4.Location = new System.Drawing.Point(494, 443);
+            this.label4.Location = new System.Drawing.Point(494, 437);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label4.Size = new System.Drawing.Size(129, 34);
@@ -493,7 +673,7 @@ namespace biblioteka
             // user_fname_tb
             // 
             this.user_fname_tb.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.user_fname_tb.Location = new System.Drawing.Point(303, 443);
+            this.user_fname_tb.Location = new System.Drawing.Point(303, 435);
             this.user_fname_tb.Name = "user_fname_tb";
             this.user_fname_tb.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.user_fname_tb.Size = new System.Drawing.Size(185, 36);
@@ -505,9 +685,9 @@ namespace biblioteka
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1029, 650);
+            this.Controls.Add(this.group_panel);
             this.Controls.Add(this.users_panel);
             this.Controls.Add(this.inventory_panel);
-            this.Controls.Add(this.group_panel);
             this.Controls.Add(this.left_menu);
             this.Name = "Main_admin";
             this.Text = "Main_admin";
@@ -516,6 +696,8 @@ namespace biblioteka
             this.inventory_panel.ResumeLayout(false);
             this.inventory_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.group_panel.ResumeLayout(false);
+            this.group_panel.PerformLayout();
             this.users_panel.ResumeLayout(false);
             this.users_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -549,7 +731,7 @@ namespace biblioteka
         private System.Windows.Forms.Panel users_panel;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox user_id_tb;
+        private System.Windows.Forms.TextBox user_email_tb;
         private System.Windows.Forms.Button user_add_but;
         private System.Windows.Forms.Button user_update_but;
         private System.Windows.Forms.ComboBox user_group_cb;
@@ -561,5 +743,25 @@ namespace biblioteka
         private System.Windows.Forms.TextBox user_fname_tb;
         private System.Windows.Forms.TextBox user_balance_tb;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox user_id_tb;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox lecturer_limit_tb;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox officer_limit_tb;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox student_limit_tb;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox lecturer_days_tb;
+        private System.Windows.Forms.TextBox officer_days_tb;
+        private System.Windows.Forms.TextBox student_days_tb;
+        private System.Windows.Forms.Button group_update_but;
+        private System.Windows.Forms.TextBox officer_;
+        private System.Windows.Forms.TextBox dent;
+        private System.Windows.Forms.TextBox officer_limit;
+        private System.Windows.Forms.TextBox t;
+        private System.Windows.Forms.TextBox lecturer_days_;
     }
 }

@@ -22,16 +22,42 @@ namespace biblioteka
 
         }
 
+        string sql;
+        PgsqlConnect pg = new PgsqlConnect();
+        DataSet dataSet;
+
         private void content_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
+        private void load_main()
+        {
+            string sql = "select name, item_id, return_date, reserved from borrows b,items i where borrower_id = '" 
+                + user.cardnum + "' and item_id = i.id";
+
+            dataSet = pg.Query(sql);
+            dataGridView1.DataSource = dataSet.Tables[0];
+
+            int borrowed_count = dataSet.Tables[0].Rows.Count;
+
+            sql = "select * from groups where id = " + user.group_id;
+
+            dataSet = pg.Query(sql);
+            int borrow_total = Convert.ToInt32(dataSet.Tables[0].Rows[0]["borrow_limit"]);
+
+            label1.Text = "Hoşgeldin " + user.fname + ",";
+            label4.Text = "Kalan ödünç hakkın: " + (borrow_total - borrowed_count);
+            balance_label.Text = "Bakiye: " + user.balance + " ₺";
+
+        }
+
+
         private void main_Load(object sender, EventArgs e)
         {
             main_panel.BringToFront();
-            label1.Text = "Hoşgeldin " + user.fname + ",";
-            balance_label.Text = "Bakiye: " + user.balance + " ₺";
+            load_main();
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -47,6 +73,7 @@ namespace biblioteka
         private void homepage_but_Click(object sender, EventArgs e)
         {
             main_panel.BringToFront();
+            load_main();
         }
 
         private void return_panel_Click(object sender, EventArgs e)
@@ -55,40 +82,82 @@ namespace biblioteka
         }
 
         private void return_book_but_Click(object sender, EventArgs e)
-        {/*
+        {
+            
             string return_item = return_item_barcode.Text;
+            sql = "select * from borrows users where item_id = '" + return_item + "' and borrower_id = '" + user.cardnum + "'";
+            dataSet = pg.Query(sql);
 
-            dataSet = new DataSet();
-            sql = "select * from users where cardnum = '" + return_item + "'";
-            NpgsqlDataAdapter add = new NpgsqlDataAdapter(sql, connection);
-            add.Fill(dataSet);*/
+            DateTime return_date =  Convert.ToDateTime(dataSet.Tables[0].Rows[0]["return_date"].ToString());
+
+            int diff = (return_date - today_date).Days;
+
+            //MessageBox.Show(diff.ToString());
+
+            if(diff < 0 ) // ceza
+            {
+                MessageBox.Show("Ödünç tarihiniz " + (diff * -1) + 
+                    " gün geçmiştir." + (diff* -1) + " ₺ hesabınızdan düşülecektir.");
+
+                user.balance += diff;
+
+                sql = "update users set balance = balance + " + diff +
+                    " where cardnum = '" + user.cardnum + "'";
+                dataSet = pg.Query(sql);
+
+            }
+            else
+            {
+                MessageBox.Show("Parça Iadesi Tamamlanmıştır.");
+            }
+
+            sql = "delete from borrows where borrower_id = '" + user.cardnum + "' and item_id = '" + return_item + "'";
+            dataSet = pg.Query(sql);
+
         }
 
         private void borrow_item_but_Click(object sender, EventArgs e)
         {
+
+            if (is_negative_balance())
+            {
+                MessageBox.Show("Daha fazla parça ödünç almak için lütfen bakiye yüklemesi yapınız.");
+                return;
+            }
+
             string borrow_item = borrow_item_tb.Text;
             DateTime return_date = today_date.AddDays(30);
             
             string sql = "insert into borrows(borrower_id,item_id,return_date)" +
                   "values('" + user.cardnum + "','" + borrow_item +  "','" + return_date.ToString("yyyy-MM-dd") + "')";
-            PgsqlConnect pg = new PgsqlConnect();
-            DataSet dataSet = pg.Query(sql);
+            dataSet = pg.Query(sql);
 
-            MessageBox.Show("Parça " + return_date.ToString("yyyy-MM-dd") + " tarihine kadar ödünç alınmıştır");
-
+            MessageBox.Show(sql);
 
         }
 
         private void bakiye_but_Click(object sender, EventArgs e)
         {
             balance_panel.BringToFront();
+            balance_lab.Text = user.balance + " ₺";
         }
 
         private void deposit_but_Click(object sender, EventArgs e)
         {
             int deposit_balance = Convert.ToInt32(balance_combobox.Text);
-            string sql = "update users set balance = balance + "
-                         + deposit_balance + " where cardnum = '" + user.cardnum + "'";
+            sql = "update users set balance = balance + " + deposit_balance + " where cardnum = '" + user.cardnum + "'";
+
+            dataSet = pg.Query(sql);
+
+            user.balance += deposit_balance;
+        }
+
+        private bool is_negative_balance()
+        {
+            if (user.balance < 0)
+                return true;
+            else
+                return false;
         }
     }
 }

@@ -38,6 +38,8 @@ namespace biblioteka
             this.borrow_but = new System.Windows.Forms.Button();
             this.homepage_but = new System.Windows.Forms.Button();
             this.main_panel = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label17 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.balance_label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,7 +57,7 @@ namespace biblioteka
             this.balance_panel = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.balance_combobox = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.balance_lab = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.deposit_but = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -71,6 +73,7 @@ namespace biblioteka
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.left_menu.SuspendLayout();
             this.main_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.borrow_panel.SuspendLayout();
             this.return_panel.SuspendLayout();
             this.balance_panel.SuspendLayout();
@@ -156,6 +159,8 @@ namespace biblioteka
             // 
             // main_panel
             // 
+            this.main_panel.Controls.Add(this.dataGridView1);
+            this.main_panel.Controls.Add(this.label17);
             this.main_panel.Controls.Add(this.label4);
             this.main_panel.Controls.Add(this.balance_label);
             this.main_panel.Controls.Add(this.label1);
@@ -164,6 +169,37 @@ namespace biblioteka
             this.main_panel.Size = new System.Drawing.Size(837, 637);
             this.main_panel.TabIndex = 2;
             this.main_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.content_Paint);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Enabled = false;
+            this.dataGridView1.Location = new System.Drawing.Point(29, 328);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 29;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(778, 275);
+            this.dataGridView1.TabIndex = 13;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label17.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.label17.Location = new System.Drawing.Point(29, 283);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(349, 34);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "Ödünç alınan parçalar : ";
             // 
             // label4
             // 
@@ -321,7 +357,7 @@ namespace biblioteka
             // 
             this.balance_panel.Controls.Add(this.label16);
             this.balance_panel.Controls.Add(this.balance_combobox);
-            this.balance_panel.Controls.Add(this.label5);
+            this.balance_panel.Controls.Add(this.balance_lab);
             this.balance_panel.Controls.Add(this.label9);
             this.balance_panel.Controls.Add(this.deposit_but);
             this.balance_panel.Controls.Add(this.textBox3);
@@ -364,17 +400,17 @@ namespace biblioteka
             this.balance_combobox.Size = new System.Drawing.Size(95, 35);
             this.balance_combobox.TabIndex = 27;
             // 
-            // label5
+            // balance_lab
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.label5.Location = new System.Drawing.Point(284, 47);
-            this.label5.Name = "label5";
-            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label5.Size = new System.Drawing.Size(95, 34);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "100 TL";
+            this.balance_lab.AutoSize = true;
+            this.balance_lab.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.balance_lab.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            this.balance_lab.Location = new System.Drawing.Point(284, 47);
+            this.balance_lab.Name = "balance_lab";
+            this.balance_lab.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.balance_lab.Size = new System.Drawing.Size(95, 34);
+            this.balance_lab.TabIndex = 26;
+            this.balance_lab.Text = "100 TL";
             // 
             // label9
             // 
@@ -513,10 +549,10 @@ namespace biblioteka
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(1029, 650);
-            this.Controls.Add(this.return_panel);
-            this.Controls.Add(this.balance_panel);
-            this.Controls.Add(this.borrow_panel);
             this.Controls.Add(this.main_panel);
+            this.Controls.Add(this.balance_panel);
+            this.Controls.Add(this.return_panel);
+            this.Controls.Add(this.borrow_panel);
             this.Controls.Add(this.left_menu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "main";
@@ -527,6 +563,7 @@ namespace biblioteka
             this.left_menu.ResumeLayout(false);
             this.main_panel.ResumeLayout(false);
             this.main_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.borrow_panel.ResumeLayout(false);
             this.borrow_panel.PerformLayout();
             this.return_panel.ResumeLayout(false);
@@ -563,7 +600,7 @@ namespace biblioteka
         private System.Windows.Forms.Button return_book_but;
         private System.Windows.Forms.Button borrow_item_but;
         private System.Windows.Forms.Panel balance_panel;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label bala;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button deposit_but;
         private System.Windows.Forms.TextBox textBox3;
@@ -578,5 +615,8 @@ namespace biblioteka
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ComboBox balance_combobox;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label balance_lab;
     }
 }
