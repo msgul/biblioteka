@@ -31,7 +31,7 @@ namespace biblioteka
         private void load_DGV1()
         {
             PgsqlConnect pg = new PgsqlConnect();
-            DataSet ds = pg.Query("select id as barkod_numarası,name as adı,item_type as tür,year as yıl from items");
+            DataSet ds = pg.Query("select id,name,item_type,year from items");
 
             dataGridView1.DataSource = ds.Tables[0];
         }

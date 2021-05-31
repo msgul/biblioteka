@@ -18,7 +18,7 @@ namespace biblioteka_test
         DataSet ds;
 
         [TestMethod]
-        public void database_connection_test()
+        public void database_connection_check()
         {
             ds = pg.Query("SELECT cardnum FROM users WHERE 1=0");
             Assert.AreEqual(1, ds.Tables[0].Columns.Count);
@@ -32,7 +32,7 @@ namespace biblioteka_test
         }
 
         [TestMethod]
-        public void check_table_insert()
+        public void table_insert_check()
         {
             ds = pg.Query("insert into groups values(99,'test',0,0)");
             ds = pg.Query("select * from groups where id = 99");
@@ -41,16 +41,20 @@ namespace biblioteka_test
         }
 
         [TestMethod]
-        public void negative_balance_check()
+        public void table_remove_check()
         {
-            bool result = main_user.check_negative_balance(us);
-            Assert.AreEqual(0, result);
+            ds = pg.Query("delete from groups where id = 99");
+            ds = pg.Query("select * from groups where id = 99");
+            int row_count = ds.Tables[0].Rows.Count;
+            Assert.AreEqual(0, row_count);
+
         }
 
         [TestMethod]
-        public void check_table_remove()
+        public void negative_balance_check()
         {
-
+            bool result = main_user.check_negative_balance(us);
+            Assert.AreEqual(false, result);
         }
 
 

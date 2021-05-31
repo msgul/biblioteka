@@ -33,7 +33,7 @@ namespace biblioteka
 
         private void load_main()
         {
-            string sql = "select name as parça_adı, item_id as parça_barkodu, return_date as son_iade_tarihi, reserved as rezerve from borrows b,items i where borrower_id = '" 
+            string sql = "select name, item_id, return_date, reserved from borrows b,items i where borrower_id = '" 
                 + user.cardnum + "' and item_id = i.id";
 
             dataSet = pg.Query(sql);
@@ -125,7 +125,6 @@ namespace biblioteka
                 return;
             }
             
-
             string borrow_item = borrow_item_tb.Text;
             DateTime return_date = today_date.AddDays(30);
             
